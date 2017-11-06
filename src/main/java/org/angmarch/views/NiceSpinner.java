@@ -67,7 +67,8 @@ public class NiceSpinner extends AppCompatTextView {
     private int displayHeight;
     private int parentVerticalOffset;
     private int dropDownListPaddingBottom;
-    private @DrawableRes int arrowDrawableResId;
+    private @DrawableRes
+    int arrowDrawableResId;
     private SpinnerTextFormatter spinnerTextFormatter = new SimpleSpinnerTextFormatter();
 
     public NiceSpinner(Context context) {
@@ -85,7 +86,8 @@ public class NiceSpinner extends AppCompatTextView {
         init(context, attrs);
     }
 
-    @Override public Parcelable onSaveInstanceState() {
+    @Override
+    public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(INSTANCE_STATE, super.onSaveInstanceState());
         bundle.putInt(SELECTED_INDEX, selectedIndex);
@@ -97,7 +99,8 @@ public class NiceSpinner extends AppCompatTextView {
         return bundle;
     }
 
-    @Override public void onRestoreInstanceState(Parcelable savedState) {
+    @Override
+    public void onRestoreInstanceState(Parcelable savedState) {
         if (savedState instanceof Bundle) {
             Bundle bundle = (Bundle) savedState;
             selectedIndex = bundle.getInt(SELECTED_INDEX);
@@ -220,7 +223,8 @@ public class NiceSpinner extends AppCompatTextView {
         return parentVerticalOffset = locationOnScreen[VERTICAL_OFFSET];
     }
 
-    @Override protected void onVisibilityChanged(View changedView, int visibility) {
+    @Override
+    protected void onVisibilityChanged(View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
         arrowDrawable = initArrowDrawable(arrowDrawableTint);
         setArrowDrawableOrHide(arrowDrawable);
@@ -315,7 +319,8 @@ public class NiceSpinner extends AppCompatTextView {
         setText(adapter.getItemInDataset(selectedIndex).toString());
     }
 
-    @Override public boolean onTouchEvent(MotionEvent event) {
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
         if (isEnabled() && event.getAction() == MotionEvent.ACTION_UP) {
             if (!popupWindow.isShowing()) {
                 showDropDown();
@@ -327,6 +332,9 @@ public class NiceSpinner extends AppCompatTextView {
     }
 
     private void animateArrow(boolean shouldRotateUp) {
+        if (arrowDrawable == null) {
+            return;
+        }
         int start = shouldRotateUp ? 0 : MAX_LEVEL;
         int end = shouldRotateUp ? MAX_LEVEL : 0;
         ObjectAnimator animator = ObjectAnimator.ofInt(arrowDrawable, "level", start, end);
