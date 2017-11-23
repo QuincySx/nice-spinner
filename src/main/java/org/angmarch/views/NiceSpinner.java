@@ -67,6 +67,7 @@ public class NiceSpinner extends AppCompatTextView {
     private int displayHeight;
     private int parentVerticalOffset;
     private int dropDownListPaddingBottom;
+    private boolean isDown = false;
     private @DrawableRes
     int arrowDrawableResId;
     private SpinnerTextFormatter spinnerTextFormatter = new SimpleSpinnerTextFormatter();
@@ -354,14 +355,24 @@ public class NiceSpinner extends AppCompatTextView {
             animateArrow(true);
         }
         measurePopUpDimension();
-        popupWindow.showAsDropDown(this);
+        if (isDown) {
+            popupWindow.showAsDropDown(this);
+        } else {
+            popupWindow.showAtLocation(this, 0, 0, 0);
+        }
     }
 
     private void measurePopUpDimension() {
         int widthSpec = MeasureSpec.makeMeasureSpec(getMeasuredWidth(), MeasureSpec.EXACTLY);
-        int heightSpec = MeasureSpec.makeMeasureSpec(
-                displayHeight - getParentVerticalOffset() - getMeasuredHeight(),
-                MeasureSpec.AT_MOST);
+
+        isDown = true;
+        int defHeight = displayHeight - getParentVerticalOffset() - getMeasuredHeight();
+        if (defHeight < getMeasuredHeight() * 3) {
+            defHeight = getParentVerticalOffset();
+            isDown = false;
+        }
+
+        int heightSpec = MeasureSpec.makeMeasureSpec(defHeight, MeasureSpec.AT_MOST);
         listView.measure(widthSpec, heightSpec);
         popupWindow.setWidth(listView.getMeasuredWidth());
         popupWindow.setHeight(listView.getMeasuredHeight() - dropDownListPaddingBottom);
