@@ -1,4 +1,4 @@
-# Nice Spinner [![](https://jitpack.io/v/arcadefire/nice-spinner.svg)](https://jitpack.io/#arcadefire/nice-spinner) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Nice%20Spinner-blue.svg?style=flat)](https://android-arsenal.com/details/1/2225)
+# Nice Spinner [![](https://jitpack.io/v/QuincySx/nice-spinner.svg)](https://jitpack.io/#QuincySx/nice-spinner) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Nice%20Spinner-blue.svg?style=flat)](https://android-arsenal.com/details/1/2225)
 
 NiceSpinner is a re-implementation of the default Android's spinner, with a nice arrow animation and a different way to display its content.
 
@@ -50,9 +50,10 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.github.arcadefire:nice-spinner:1.3.1'
+    compile 'com.github.arcadefire:nice-spinner:[last_version]'
 }
 ```
+[![](https://jitpack.io/v/QuincySx/nice-spinner.svg)](https://jitpack.io/#QuincySx/nice-spinner)
 
 Or declare it into your `pom.xml`:
 
