@@ -358,7 +358,7 @@ public class NiceSpinner extends AppCompatTextView {
         if (isDown) {
             popupWindow.showAsDropDown(this);
         } else {
-            popupWindow.showAtLocation(this, Gravity.BOTTOM, 0, 0);
+            popupWindow.showAtLocation(this, Gravity.NO_GRAVITY, 0, 0);
         }
     }
 
