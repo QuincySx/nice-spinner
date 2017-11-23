@@ -358,7 +358,11 @@ public class NiceSpinner extends AppCompatTextView {
         if (isDown) {
             popupWindow.showAsDropDown(this);
         } else {
-            popupWindow.showAtLocation(this, Gravity.NO_GRAVITY, 0, 0);
+            int[] location = new int[2];
+            this.getLocationOnScreen(location);
+            //在控件上方显示
+            popupWindow.showAtLocation(this, Gravity.NO_GRAVITY, (location[0] + getWidth() / 2) - getWidth() / 2, location[1] - listView.getMeasuredHeight() - dropDownListPaddingBottom);
+//            popupWindow.showAtLocation(this, Gravity.NO_GRAVITY, 0, 0);
         }
     }
 
